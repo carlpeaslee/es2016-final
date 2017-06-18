@@ -23,14 +23,24 @@ class Random {
 class ColorGenerator extends Random {
   constructor(max, allowNegatives, type = "rgb") {
     super(max, allowNegatives)
-    if (this.types.includes(type)) {
+    if (this.typeList.includes(type)) {
       this.type = type
     } else {
       this.type = 'rgb'
     }
   }
 
-  types = ['hex', 'rgb']
+  typeList = ['hex', 'rgb']
+
+  get types() {
+    return this.typeList
+  }
+
+  set types(types = ['hex', 'rgb']) {
+    if (Array.isArray(types)) {
+      this.typeList = types.map(type => type)
+    }
+  }
 
   color() {
     let r = super.randomInt(0,255)

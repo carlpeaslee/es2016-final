@@ -4,7 +4,9 @@ import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput
 import {rando} from './utils'
 
 console.log(rando.color())
-
+console.log(rando.types)
+rando.types = ["names"]
+console.log(rando.types)
 
 class PlotCool extends Component {
 
@@ -121,7 +123,7 @@ class PlotCool extends Component {
     return newStyles
   }
 
-  rules = () => {
+  get rules() {
     let {rules} = this.state
     let array = []
     let fields = ['name', 'begin', 'end']
@@ -167,7 +169,7 @@ class PlotCool extends Component {
     return (
       <Container>
         <Column>
-          {rules()}
+          {rules}
           <Button
             onClick={newField}
           >
