@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import hljs from 'highlight.js'
 import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput, Button, Document} from './styled'
+import {rando} from './utils'
+
+console.log(rando.randomInt(1,5))
+
 
 class App extends Component {
 
