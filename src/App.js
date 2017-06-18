@@ -3,10 +3,12 @@ import hljs from 'highlight.js'
 import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput, Button, Document} from './styled'
 import {rando} from './utils'
 
-console.log(rando.randomInt(1,5))
+console.log(rando.color())
 
 
-class App extends Component {
+class PlotCool extends Component {
+
+  static displayName = "PlotCool"
 
   state = {
     editor: '',
@@ -195,4 +197,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default PlotCool
