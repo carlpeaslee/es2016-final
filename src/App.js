@@ -2,7 +2,21 @@ import React, { Component } from 'react'
 import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput, Button, Document} from './styled'
 
 class App extends Component {
+
+  state = {
+    editor: ''
+  }
+
+  handleChange = (event) => {
+    let {name, value} = event.target
+    this.setState({
+      [name]: value
+    })
+  }
+
   render() {
+    let {handleChange} = this
+    let {editor} = this.state
     return (
       <Container>
         <Column>
@@ -15,7 +29,11 @@ class App extends Component {
             Random Text
           </Button>
           <Document>
-            <Editor/>
+            <Editor
+              name={"Editor"}
+              value={editor}
+              onChange={handleChange}
+            />
             <Markup/>
           </Document>
         </Column>
