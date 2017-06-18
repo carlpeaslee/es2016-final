@@ -9,3 +9,22 @@ let options = {
     //our request body
   })
 }
+
+
+let options = () => {
+  return {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      //...our request
+    })
+  }
+}
+
+function randomInt(min, max) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
