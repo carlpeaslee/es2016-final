@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import hljs from 'highlight.js'
 import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput, Button, Document} from './styled'
-import {rando} from './utils'
+import {rando, getRandomPoem} from './utils'
 
 class PlotCool extends Component {
 
@@ -122,6 +122,26 @@ class PlotCool extends Component {
     return newStyles
   }
 
+  getRandomText = async () => {
+    try {
+      let poem = await getRandomPoem()
+      this.handleChange({
+        target: {
+          name: 'editor',
+          value: poem
+        }
+      })
+    } catch (e) {
+      console.log("getRandomText error", e)
+      this.handleChange({
+        target: {
+          name: 'editor',
+          value: `Sorry! Our random text API isn't working right now!`
+        }
+      })
+    }
+  }
+
   get rules() {
     let {rules} = this.state
     let array = []
@@ -163,7 +183,7 @@ class PlotCool extends Component {
   }
 
   render() {
-    let {rules, newField, handleChange, tab, convertToMarkup, prepareStyles} = this
+    let {rules, newField, handleChange, tab, convertToMarkup, prepareStyles, getRandomText} = this
     let {editor} = this.state
     return (
       <Container>
@@ -176,7 +196,9 @@ class PlotCool extends Component {
           </Button>
         </Column>
         <Column>
-          <Button>
+          <Button
+            onClick={getRandomText}
+          >
             Random Text
           </Button>
           <Document>
