@@ -3,11 +3,6 @@ import hljs from 'highlight.js'
 import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput, Button, Document} from './styled'
 import {rando} from './utils'
 
-console.log(rando.color())
-console.log(rando.types)
-rando.types = ["names"]
-console.log(rando.types)
-
 class PlotCool extends Component {
 
   static displayName = "PlotCool"
@@ -119,6 +114,10 @@ class PlotCool extends Component {
     }
 
     let newStyles = "".concat(styles)
+
+    while (newStyles.includes('random')) {
+      newStyles = newStyles.replace('random', rando.color())
+    }
 
     return newStyles
   }
