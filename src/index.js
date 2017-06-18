@@ -10,9 +10,9 @@ import {
   // objAssemblyComputedProps,
   // spreadOperator,
   // templateLiterals,
-  // functionArgs
+  // functionArgs,
+  // promises
 } from './examples'
-
 
 
 

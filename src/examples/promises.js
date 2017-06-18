@@ -22,21 +22,19 @@ export function promises() {
     })
   }
 
-  waitUpToThreeSeconds(2000)
-    .then(successMessage => {
-      console.log(successMessage)
-    })
-    .catch(errorMessage => {
-      console.log(errorMessage)
-    })
+  waitUpToThreeSeconds(2).then(successMessage => {
+                              console.log(successMessage)
+                            })
+                            .catch(errorMessage => {
+                              console.log(errorMessage)
+                            })
 
-  waitUpToThreeSeconds(4000)
-    .then(successMessage => {
-      console.log(successMessage)
-    })
-    .catch(errorMessage => {
-      console.log(errorMessage)
-    })
+  waitUpToThreeSeconds(4).then(successMessage => {
+                              console.log(successMessage)
+                            })
+                            .catch(errorMessage => {
+                              console.log(errorMessage)
+                            })
 
 
 }
