@@ -18,11 +18,20 @@ let options = () => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      //...our request
+      query: `{
+        allPoems (
+          first: 1
+          skip: ${randomInt(0,160)}
+        ) {
+          title
+          author
+          lines
+          text
+        }
+      }`
     })
   }
 }
-
 function randomInt(min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)

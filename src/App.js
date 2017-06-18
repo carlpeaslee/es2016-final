@@ -4,7 +4,12 @@ import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput
 class App extends Component {
 
   state = {
-    editor: ''
+    editor: '',
+    rules: 1,
+    name0: '',
+    begin0: '',
+    end0: '',
+    style0: '',
   }
 
   handleChange = (event) => {
@@ -14,13 +19,76 @@ class App extends Component {
     })
   }
 
+  rules = () => {
+    let {rules} = this.state
+    let array = []
+    let fields = ['name', 'begin', 'end']
+    for (let i = 0; i < rules; i++) {
+      array.push(
+        <Row
+          key={i}
+        >
+          <Column>
+            {fields.map( (field, index) => {
+              return (
+                <Column
+                  key={`${field}${index}`}
+                >
+                  <RuleLabel>
+                    {field}
+                  </RuleLabel>
+                  <RuleInput
+                    value={this.state[`${field}${i}`]}
+                    onChange={this.handleChange}
+                    name={`${field}${i}`}
+                  />
+                </Column>
+              )
+            })}
+          </Column>
+          <StyleInput
+            value={this.state[`style${i}`]}
+            onChange={this.handleChange}
+            name={`style${i}`}
+          />
+        </Row>
+      )
+    }
+
+
+    return array
+  }
+
+  newField = () => {
+    this.setState( (prevState) => {
+      let {rules} = prevState
+      let fields = ['name', 'begin', 'end', 'style']
+      let inputValues = {}
+      fields.forEach( (field) => {
+        inputValues = {
+          ...inputValues,
+          [`${field}${rules}`]: ''
+        }
+      })
+      rules++
+      return {
+        rules,
+        ...inputValues
+      }
+    })
+  }
+
+
   render() {
     let {handleChange} = this
     let {editor} = this.state
     return (
       <Container>
         <Column>
-          <Button>
+          {this.rules()}
+          <Button
+            onClick={this.newField}
+          >
             New Rule
           </Button>
         </Column>
@@ -30,7 +98,6 @@ class App extends Component {
           </Button>
           <Document>
             <Editor
-              name={"Editor"}
               value={editor}
               onChange={handleChange}
             />
